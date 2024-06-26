@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chai Aur Tweet
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Are you sure you want to delete the Tweet?</h1>
+
+    <div class="text-center">
+        <form method="post" class="d-inline-block">
+            {% csrf_token %}
+            <button class="btn btn-danger btn-lg mr-2">
+                <i class="fas fa-trash-alt"></i> Delete
+            </button>
+        </form>
+        <a class="btn btn-success btn-lg ml-2" href="{% url 'tweet_list' %}">
+            <i class="fas fa-times-circle"></i> Cancel
+        </a>
+    </div>
+</div>
+
+{% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> {% endcomment %}
+{% endblock content %}

@@ -1,0 +1,134 @@
+ {% extends "layout.html" %}
+{% comment %}
+{% block title %}
+Chai Aur Tweet
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary">Welcome to My First Project Using Django</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-success" href="{% url 'tweet_create' %}">
+            Create a Tweet
+        </a>
+    </div>
+
+    <div class="row justify-content-center">
+        {% for tweet in tweets %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Photo" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-secondary">{{ tweet.user.username }}</h5>
+                    <p class="card-text">{{ tweet.text }}</p>
+                    {% if tweet.user == user %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-warning btn-sm text-white">
+                          <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger btn-sm text-white">
+                          <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                    <p class="text-muted mt-2">Your tweet</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card-title {
+        color: #343a40;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+</style>
+{% endblock content %} {% endcomment %}
+
+
+{% block title %}
+Chai Aur Tweet
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary">Welcome to My First Project Using Django</h1>
+
+    <div class="text-center mb-4">
+        <a class="btn btn-success" href="{% url 'tweet_create' %}">
+            Create a Tweet
+        </a>
+    </div>
+
+    <!-- Search Form -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <form method="get" action="{% url 'tweet_list' %}">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search tweets" value="{{ request.GET.query }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        {% for tweet in tweets %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Photo" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-secondary">{{ tweet.user.username }}</h5>
+                    <p class="card-text">{{ tweet.text }}</p>
+                    {% if tweet.user == user %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-warning btn-sm text-white">
+                          <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger btn-sm text-white">
+                          <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                    <p class="text-muted mt-2">Your tweet</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+   
+</style>
+{% endblock content %}
